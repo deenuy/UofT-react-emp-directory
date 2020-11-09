@@ -9,13 +9,12 @@ import { faSearch, faSort  } from '@fortawesome/free-solid-svg-icons'
 
 function App() {
   const[employees, setEmployees] = useState([]);
-  const[search, setSearch] = useState("");
-  const[query, setQuery] = useState('chicken');
+  const[searchParam, setSearchParam] = useState("");
 
   useEffect(() =>{
     console.log("Effect has been run");
     genRandomUsers();
-  }, [query]);
+  }, []);
 
   const genRandomUsers = async () => {
     const response = await fetch(`https://randomuser.me/api/?results=50`);
@@ -24,13 +23,22 @@ function App() {
     console.log(data);
   };
 
-  const updateSearch = e => {
-    setSearch(e.target.value);
+  const setFilter = employees => {
+    let users = employees.results;
+    console.log(users);
+    if(users) return users.filter(
+      (row) => 
+        row.name.first.toLowerCase().indexOf(searchParam) > -1 ||
+        row.name.last.toLowerCase().indexOf(searchParam) > -1 ||
+        row.login.username.toLowerCase().indexOf(searchParam) > -1 ||
+        row.email.toLowerCase().indexOf(searchParam) > -1 ||
+        row.location.city.toLowerCase().indexOf(searchParam) > -1 ||
+        row.location.state.toLowerCase().indexOf(searchParam) > -1
+      );
   }
 
-  const getSearch = e => {
-    e.preventDefault(); //To stop page refresh
-    setQuery(search);
+  const updateSearch = e => {
+    setSearchParam(e.target.value);
   }
 
   return (
@@ -40,15 +48,15 @@ function App() {
           <h3 className="table-title"> Employee Directory </h3>
           <div className="search-block">
             <div className="search-panel">
-              <input type="text" value={search} onChange={updateSearch} placeholder="Search for employee..." className="search-input"/>
+              <input type="text" value={searchParam} onChange={updateSearch} placeholder="Search for employee..." className="search-input"/>
             </div>
-            <FontAwesomeIcon icon={faSearch} onClick={getSearch} style={{width: "7rem", height: "2rem", paddingTop: "6px", cursor: "pointer"}} />
+            <FontAwesomeIcon icon={faSearch} onClick={setFilter} style={{width: "7rem", height: "2rem", paddingTop: "6px", cursor: "pointer"}} />
           </div>
         </div>
       </header>
       <main>
         <EmpResults 
-          {...employees}
+          data = {setFilter(employees)}
         />
       </main>
     </div>

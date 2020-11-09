@@ -3,12 +3,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faSort  } from '@fortawesome/free-solid-svg-icons'
 
-function EmpResults(employees) {
-
-  let users = employees.results;
-  console.log(users);
-  console.log(employees.results);
-
+function EmpResults({data}) {
+  // let users = data.results;
+  console.log(data);
+  // console.log(data.results);
 
   return (
     <div className="table-wrapper">
@@ -47,8 +45,8 @@ function EmpResults(employees) {
           </tr>
         </thead>
         <tbody>
-          {
-            users.map((employee) => {
+          {data && 
+            data.map((employee) => {
               return (
                       <tr key={employee.name.first + "-" + employee.name.last}>
                         <td >
@@ -60,7 +58,7 @@ function EmpResults(employees) {
                             />
                           }
                         </td>
-                        <td>{employee.name.first} {employee.name.last}</td>
+                        <td>{employee.name.first}</td>
                         <td>{employee.name.last}</td>
                         <td>{employee.login.username}</td>
                         <td>{employee.email}</td>

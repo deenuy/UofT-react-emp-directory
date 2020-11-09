@@ -117,3 +117,35 @@ th {
   border-radius: 50%;
   height: 3rem;
 }
+
+@media screen and (max-width: 990px) {
+
+  .table-title{
+    font-size: 1.2rem;
+  }
+
+  .search-panel{
+    width: 18rem;
+  }
+
+  .table th, .table td {
+    font-size: small;
+  }
+  
+}
+
+@media screen and (max-width: 690px) {
+
+  .table-title{
+    font-size: 1.1rem;
+  }
+
+  .search-panel{
+    width: 12rem;
+  }
+
+  .table th, .table td {
+    font-size: small;
+  }
+  
+}
