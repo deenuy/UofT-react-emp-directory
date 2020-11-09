@@ -1,5 +1,6 @@
 {
-  "name": "client",
+  "name": "UofT-react-emp-directory",
+  "homepage": "https://deenuy.github.io/UofT-react-emp-directory/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
