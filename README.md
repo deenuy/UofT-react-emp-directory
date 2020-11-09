@@ -1,4 +1,5 @@
 # UofT-react-emp-directory
+This is a frontend application react-based grid feature to display user employees with filter and sort columns functions. Project exhibits the react component state management, props and react hooks implementation.
 
 Hosted url: https://github.com/deenuy/UofT-react-emp-directory
 
