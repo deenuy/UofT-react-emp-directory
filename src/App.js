@@ -31,12 +31,12 @@ function App() {
     console.log(users);
     if(users) return users.filter(
       (row) => 
-        row.name.first.toLowerCase().indexOf(searchParam) > -1 ||
-        row.name.last.toLowerCase().indexOf(searchParam) > -1 ||
-        row.login.username.toLowerCase().indexOf(searchParam) > -1 ||
-        row.email.toLowerCase().indexOf(searchParam) > -1 ||
-        row.location.city.toLowerCase().indexOf(searchParam) > -1 ||
-        row.location.state.toLowerCase().indexOf(searchParam) > -1
+        row.name.first.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ||
+        row.name.last.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ||
+        row.login.username.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ||
+        row.email.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ||
+        row.location.city.toLowerCase().indexOf(searchParam.toLowerCase()) > -1 ||
+        row.location.state.toLowerCase().indexOf(searchParam.toLowerCase()) > -1
       );
   }
 
@@ -58,7 +58,7 @@ function App() {
           <h3 className="table-title"> Employee Directory </h3>
           <div className="search-block">
             <div className="search-panel">
-              <input type="text" value={searchParam} onChange={updateSearch} placeholder="Search for employee..." className="search-input"/>
+              <input type="text" value={searchParam} onChange={updateSearch} placeholder="Search for an employee by name, email, city.." className="search-input"/>
             </div>
             <FontAwesomeIcon icon={faSearch} onClick={setFilter} style={{width: "7rem", height: "2rem", paddingTop: "6px", cursor: "pointer"}} />
           </div>
