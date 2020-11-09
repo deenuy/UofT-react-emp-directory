@@ -10,7 +10,9 @@ import { faSearch, faSort  } from '@fortawesome/free-solid-svg-icons'
 function App() {
   const[employees, setEmployees] = useState([]);
   const[searchParam, setSearchParam] = useState("");
+  const[sort, setSort] = useState('descending');
 
+  // default on load react hook
   useEffect(() =>{
     console.log("Effect has been run");
     genRandomUsers();
@@ -23,6 +25,7 @@ function App() {
     console.log(data);
   };
 
+  // Table data filter function
   const setFilter = employees => {
     let users = employees.results;
     console.log(users);
@@ -37,6 +40,13 @@ function App() {
       );
   }
 
+  // Sort function
+  const sortBy = str => {
+    console.log(str);
+    setSort(str);
+  }
+
+  // update search parameter
   const updateSearch = e => {
     setSearchParam(e.target.value);
   }
@@ -57,6 +67,7 @@ function App() {
       <main>
         <EmpResults 
           data = {setFilter(employees)}
+          sortBy = {sortBy}
         />
       </main>
     </div>

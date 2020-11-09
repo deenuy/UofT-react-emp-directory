@@ -3,10 +3,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSearch, faSort  } from '@fortawesome/free-solid-svg-icons'
 
-function EmpResults({data}) {
+function EmpResults(props) {
   // let users = data.results;
+  const { data } = props;
   console.log(data);
-  // console.log(data.results);
 
   return (
     <div className="table-wrapper">
@@ -19,27 +19,27 @@ function EmpResults({data}) {
             </th>
             <th className="th-lg">
               <p>First Name
-                <FontAwesomeIcon icon={faSort} style={{width: "2rem", cursor: "pointer"}} />
+                <FontAwesomeIcon icon={faSort} onClick={props.sortBy('first')}  style={{width: "2rem", cursor: "pointer"}} />
               </p>
             </th>
             <th className="th-lg">
               <p>Last Name
-                <FontAwesomeIcon icon={faSort} style={{width: "2rem", cursor: "pointer"}} />
+                <FontAwesomeIcon icon={faSort} onClick={props.sortBy('last')} style={{width: "2rem", cursor: "pointer"}} />
               </p>
             </th>
             <th className="th-lg">
               <p>Username
-                <FontAwesomeIcon icon={faSort} style={{width: "2rem", cursor: "pointer"}} />
+                <FontAwesomeIcon icon={faSort} onClick={props.sortBy('userName')} style={{width: "2rem", cursor: "pointer"}} />
               </p>
             </th>
             <th className="th-lg">
               <p>Email
-                <FontAwesomeIcon icon={faSort} style={{width: "2rem", cursor: "pointer"}} />
+                <FontAwesomeIcon icon={faSort} onClick={props.sortBy('email')} style={{width: "2rem", cursor: "pointer"}} />
               </p>
             </th>
             <th className="th-lg">
               <p>Location
-                <FontAwesomeIcon icon={faSort} style={{width: "2rem", cursor: "pointer"}} />
+                <FontAwesomeIcon icon={faSort} onClick={props.sortBy('location')} style={{width: "2rem", cursor: "pointer"}} />
               </p>
             </th>
           </tr>
