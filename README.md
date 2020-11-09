@@ -20,4 +20,4 @@ sort
 Ajax to fetch random users (Credits: https://randomuser.me/)
 
 ## Demo
-![Demo](client/public/assets/imgs/demo-emp-dir-react-app.gif)
+![Demo](public/assets/imgs/demo-emp-dir-react-app.gif)
