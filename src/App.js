@@ -16,18 +16,18 @@ function App() {
   useEffect(() =>{
     console.log("Effect has been run");
     genRandomUsers();
-  }, []);
+  }, [sort]);
 
   const genRandomUsers = async () => {
     const response = await fetch(`https://randomuser.me/api/?results=50`);
     const data = await response.json();
-    setEmployees(data);
-    console.log(data);
+    setEmployees(data.results);
+    // console.log(data);
   };
 
   // Table data filter function
   const setFilter = employees => {
-    let users = employees.results;
+    let users = employees;
     console.log(users);
     if(users) return users.filter(
       (row) => 
@@ -41,10 +41,60 @@ function App() {
   }
 
   // Sort function
-  const sortBy = str => {
-    console.log(str);
-    setSort(str);
+  let sortBy = (e) => {
+    var sortedList;
+    var emp = employees;
+
+    var getStorageSortType = localStorage.getItem('sortType');
+
+    if (e.target.id === "orderByFirst") {
+      if(!getStorageSortType || getStorageSortType === 'ascending') {
+        localStorage.setItem('sortType', 'descending');
+        sortedList = emp.sort((a, b) => a.name.first > b.name.first ? 1 : a.name.first < b.name.first ? -1 : 0);
+      } else {
+        sortedList = emp.sort((a, b) => a.name.first > b.name.first ? -1 : a.name.first < b.name.first ? 1 : 0);
+        localStorage.setItem('sortType', 'ascending');
+      }
+    }
+    if (e.target.id === "orderByLast") {
+      if(!getStorageSortType || getStorageSortType === 'ascending') {
+        localStorage.setItem('sortType', 'descending');
+        sortedList = emp.sort((a, b) => a.name.last > b.name.last ? 1 : a.name.last < b.name.last ? -1 : 0);
+      } else {
+        sortedList = emp.sort((a, b) => a.name.last > b.name.last ? -1 : a.name.last < b.name.last ? 1 : 0);
+        localStorage.setItem('sortType', 'ascending');
+      }
+    }
+    if (e.target.id === "orderById") {
+      if(!getStorageSortType || getStorageSortType === 'ascending') {
+        localStorage.setItem('sortType', 'descending');
+        sortedList = emp.sort((a, b) => a.login.username > b.login.username ? 1 : a.login.username < b.login.username ? -1 : 0);
+      } else {
+        sortedList = emp.sort((a, b) => a.login.username > b.login.username ? -1 : a.login.username < b.login.username ? 1 : 0);
+        localStorage.setItem('sortType', 'ascending');
+      }
+    }
+    if (e.target.id === "orderByEmail") {
+      if(!getStorageSortType || getStorageSortType === 'ascending') {
+        localStorage.setItem('sortType', 'descending');
+        sortedList = emp.sort((a, b) => a.email > b.email ? 1 : a.email < b.email ? -1 : 0);
+      } else {
+        sortedList = emp.sort((a, b) => a.email > b.email ? -1 : a.email < b.email ? 1 : 0);
+        localStorage.setItem('sortType', 'ascending');
+      }
+    }
+    if (e.target.id === "orderByLocation") {
+      if(!getStorageSortType || getStorageSortType === 'ascending') {
+        localStorage.setItem('sortType', 'descending');
+        sortedList = emp.sort((a, b) => a.location.city > b.location.city ? 1 : a.location.city < b.location.city ? -1 : 0);
+      } else {
+        sortedList = emp.sort((a, b) => a.location.city > b.location.city ? -1 : a.location.city < b.location.city ? 1 : 0);
+        localStorage.setItem('sortType', 'ascending');
+      }
+    }
+    if(sortedList) setEmployees([...sortedList]);
   }
+
 
   // update search parameter
   const updateSearch = e => {
